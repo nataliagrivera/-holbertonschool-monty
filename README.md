@@ -1,2 +1,2 @@
-# -holbertonschool-monty
+# holbertonschool-monty
 C - Stacks, Queues - LIFO, FIFO
