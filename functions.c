@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "monty.h"
 /**
  * push - add
@@ -51,4 +52,28 @@ void pall(stack_t **stack)
 	}
 
 	printf("\n");
+}
+
+int main(void)
+{
+	instruction_t instructions[] =
+{
+    {"push", push},
+    {"pall", pall},
+    {NULL, NULL}
+};
+
+	int i;
+    char *opcode;
+    unsigned int line_number;
+
+    for (i = 0; instructions[i].opcode != NULL; i++)
+    {
+        if (strcmp(instructions[i].opcode) == 0)
+        {
+            instructions[i].f(NULL, line_number);
+            break;
+        }
+    }
+    return (0);
 }
