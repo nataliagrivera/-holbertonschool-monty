@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "monty.h"
-/**
- * push - add
- * @stack: pointer
- * @line_number: integer
- *
- */
+
 void push(stack_t **stack, unsigned int line_number)
 {
 	int value;
@@ -23,25 +18,20 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: out of memory\n");
 		exit(EXIT_FAILURE);
 	}
-
 	new_node->n = value;
 	new_node->prev = NULL;
 	new_node->next = *stack;
 	*stack = new_node;
 }
 
-/**
- * pall - print all
- * @stack: pointer
- *
- */
-void pall(stack_t **stack)
+void pall(stack_t **stack, unsigned int line_number)
 {
+	(void)line_number;
+
 	if (*stack == NULL)
 	{
 		return;
 	}
-
 	stack_t *current = *stack;
 
 	while (current != NULL)
@@ -49,6 +39,5 @@ void pall(stack_t **stack)
 		printf("%d ", current->n);
 		current = current->next;
 	}
-
 	printf("\n");
 }
