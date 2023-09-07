@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include "monty.h"
 
+/**
+ * push - command to push
+ * @stack: first node
+ * @line_number: line number
+ *
+ */
 void push(stack_t **stack, unsigned int line_number)
 {
 	int value;
@@ -24,6 +30,12 @@ void push(stack_t **stack, unsigned int line_number)
 	*stack = new_node;
 }
 
+/**
+ * pall - print all command
+ * @stack: first node
+ * @line_number: line number(void)
+ *
+ */
 void pall(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
