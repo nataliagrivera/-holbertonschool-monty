@@ -1,8 +1,5 @@
 #include "monty.h"
-#include <stdio.h>
 #include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
 /**
  * main - entry point
  * @argc: argument count
@@ -31,7 +28,7 @@ int main(int argc, char *argv[])
  * Return: Success
  */
 int open_file(char *filename, stack_t **stack)
-
+{
 	char *line = NULL;
 	size_t len;
 	FILE *fd;
@@ -62,6 +59,13 @@ int open_file(char *filename, stack_t **stack)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * parse_command - takes the command and calls the corresponding function
+ * @stack: first node
+ * @op: commands
+ * @line_number: line number
+ *
+ **/
 void parse_command(stack_t **stack, char *op, unsigned int line_number)
 {
 	int i;
@@ -81,7 +85,7 @@ void parse_command(stack_t **stack, char *op, unsigned int line_number)
 		if (strcmp(op, comm[i].opcode) == 0)
 		{
 			comm[i].f(stack, line_number);
-			return;
+			return
 		}
 	}
 

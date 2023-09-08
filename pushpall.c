@@ -1,33 +1,73 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "monty.h"
+
+/**
+ * push - adds a new element to the stack.
+ * @stack: doubly linked list que nos pasan.
+ * @line_number: El valor que va dentro del node.
+ *
+ * Return: el nuevo node que creamos (new_head).
+ **/
+
 
 void push(stack_t **stack, unsigned int line_number)
 {
-        int value;
-        if (scanf(" %d ", &value) != 1) {
-                fprintf(stderr, "L%d: usage: push integer\n", line_number);
-                exit(EXIT_FAILURE);
-        }
-        stack_t *new_node = malloc(sizeof(stack_t));
-        if (new_node == NULL) {
-                fprintf(stderr, "Error: out of memory\n");
-                exit(EXIT_FAILURE);
-        }
-        new_node->n = value;
-        new_node->prev = NULL;
-        new_node->next = *stack;
-        *stack = new_node;
+	stack_t *new_head;
+	char *op; /*parametro del push*/
+	char *endptr;
+	int num;
+
+	new_head = malloc(sizeof(stack_t));
+	if (new_head == NULL)
+	{
+		printf("Error: malloc failed\n");
+		freedlist(new_head);
+		freedlist(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+
+	op = strtok(NULL, " \n$");
+
+	if (op != NULL)
+	{
+		num = strtol(op, &endptr, 10);
+	}
+
+	new_head->n = num;
+	new_head->prev = NULL;
+
+	if (isdigit(new_head->n))
+	{
+		printf("L%i: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	new_head->next = *stack;
+
+	*stack = new_head;
 }
+
+/**
+ * pall - prints all elements of the stack
+ * @stack: stack that needs to be printed
+ * @line_number: unused variable.
+ *
+ **/
 void pall(stack_t **stack, unsigned int line_number)
 {
-        if (*stack == NULL) {
-                return;
-        }
-        stack_t *current = *stack;
-        while (current != NULL) {
-                printf("%d ", current->n);
-                current = current->next;
-        }
-        printf("\n");
+	stack_t *element;
+	(void)line_number;
+
+	if (*stack == NULL)
+	{
+		return;
+	}
+
+	element = *stack;
+
+	while (element != NULL)
+	{
+		printf("%i\n", element->n);
+		element = element->next;
+	}
 }
