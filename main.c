@@ -1,5 +1,10 @@
 #include "monty.h"
+
+#include <stdio.h>
 #include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+
 /**
  * main - entry point
  * @argc: argument count
@@ -18,7 +23,6 @@ int main(int argc, char *argv[])
 	}
 	open_file(argv[1], &head);
 	exit(EXIT_SUCCESS);
-
 }
 
 /**
@@ -55,6 +59,7 @@ int open_file(char *filename, stack_t **stack)
 	}
 	fclose(fd);
 	free(line);
+
 	freedlist(*stack);
 	return (EXIT_SUCCESS);
 }
@@ -85,13 +90,16 @@ void parse_command(stack_t **stack, char *op, unsigned int line_number)
 		if (strcmp(op, comm[i].opcode) == 0)
 		{
 			comm[i].f(stack, line_number);
-			return
+      
+			return;
+
 		}
 	}
 
 	if (strlen(op) != 0 && op[0] != '#')
 	{
 		printf("L%i: unkown instructions %s\n", line_number, op);
+
 		freedlist(*stack);
 		exit(EXIT_FAILURE);
 	}
