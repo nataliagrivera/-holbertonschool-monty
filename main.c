@@ -1,4 +1,5 @@
 #include "monty.h"
+
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -58,17 +59,29 @@ int open_file(char *filename, stack_t **stack)
 	}
 	fclose(fd);
 	free(line);
+
+	freedlist(*stack);
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * parse_command - takes the command and calls the corresponding function
+ * @stack: first node
+ * @op: commands
+ * @line_number: line number
+ *
+ **/
 void parse_command(stack_t **stack, char *op, unsigned int line_number)
 {
 	int i;
-
-	instruction_t comm[] =
-	{
+	instruction_t comm[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 
@@ -77,13 +90,17 @@ void parse_command(stack_t **stack, char *op, unsigned int line_number)
 		if (strcmp(op, comm[i].opcode) == 0)
 		{
 			comm[i].f(stack, line_number);
+      
 			return;
+
 		}
 	}
 
 	if (strlen(op) != 0 && op[0] != '#')
 	{
 		printf("L%i: unkown instructions %s\n", line_number, op);
+
+		freedlist(*stack);
 		exit(EXIT_FAILURE);
 	}
 }
