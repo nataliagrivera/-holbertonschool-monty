@@ -90,7 +90,7 @@ void parse_command(stack_t **stack, char *op, unsigned int line_number)
 		if (strcmp(op, comm[i].opcode) == 0)
 		{
 			comm[i].f(stack, line_number);
-      
+
 			return;
 
 		}
