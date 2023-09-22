@@ -41,7 +41,7 @@ void add(stack_t **stack, unsigned int value)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%i:can't add, stack too short\n", value);
+		fprintf(stderr, "L%i: can't add, stack too short\n", value);
 		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->n;
