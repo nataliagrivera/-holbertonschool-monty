@@ -12,7 +12,7 @@ void swap(stack_t **stack, unsigned int value)
 
 	if (!(*stack) || !((*stack)->next))
 	{
-		printf("L%i: can't swap, stack too short\n", value);
+		fprintf(stderr, "L%i: can't swap, stack too short\n", value);
 		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->next;
@@ -41,7 +41,7 @@ void add(stack_t **stack, unsigned int value)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		printf("L%i:can't add, stack too short\n", value);
+		fprintf(stderr, "L%i:can't add, stack too short\n", value);
 		exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->n;

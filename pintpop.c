@@ -9,7 +9,7 @@ void pint(stack_t **stack, unsigned int value)
 {
 	if (stack == NULL || *stack == NULL)
 	{
-		printf("L%i: can't pint, stack empty\n", value);
+		fprintf(stderr, "L%i: can't pint, stack empty\n", value);
 			exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
@@ -26,7 +26,7 @@ void pop(stack_t **stack, unsigned int value)
 
 	if (*stack == NULL)
 	{
-		printf("L%d: can't pop an empty stack\n", value);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", value);
 		freedlist(*stack);
 		exit(EXIT_FAILURE);
 	}
