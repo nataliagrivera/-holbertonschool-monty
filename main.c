@@ -98,7 +98,7 @@ void parse_command(stack_t **stack, char *op, unsigned int line_number)
 
 	if (strlen(op) != 0 && op[0] != '#')
 	{
-		fprintf(stderr, "L%i: unknown instructions %s\n", line_number, op);
+		fprintf(stderr, "L%i: unknown instruction %s\n", line_number, op);
 
 		freedlist(*stack);
 		exit(EXIT_FAILURE);
